@@ -1,0 +1,26 @@
+{
+  "pretrained-adam": {
+    "accuracy": 0.8266925817946226,
+    "precision_macro": 0.827447853220895,
+    "recall_macro": 0.8226616804212958,
+    "f1_macro": 0.820929120290342,
+    "precision_weighted": 0.8302942322956858,
+    "recall_weighted": 0.8266925817946226
+  },
+  "pretrained-adabound": {
+    "accuracy": 0.8053126012309686,
+    "precision_macro": 0.8071598339701415,
+    "recall_macro": 0.800980822749104,
+    "f1_macro": 0.7995944905516247,
+    "precision_weighted": 0.8099596236250632,
+    "recall_weighted": 0.8053126012309686
+  },
+  "scratch-adam": {
+    "accuracy": 0.6601878846776806,
+    "precision_macro": 0.6587024528996717,
+    "recall_macro": 0.6560483549516796,
+    "f1_macro": 0.652317952510423,
+    "precision_weighted": 0.6622107211060106,
+    "recall_weighted": 0.6601878846776806
+  }
+}

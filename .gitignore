@@ -1,0 +1,38 @@
+# Python cache and temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Dataset and downloaded archives
+/data/stanford-dogs/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Model checkpoints and pretrained weights
+/checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Generated logs
+*.log
