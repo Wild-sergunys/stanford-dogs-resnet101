@@ -67,13 +67,50 @@
 
 ## Запуск
 
-Требуется Python 3.12. Зависимости устанавливаются из `requirements.txt`; для обучения на GPU необходима сборка PyTorch с поддержкой CUDA.
+Требуется Python 3.12. Приведённые ниже команды выполняются из корня проекта. В `requirements.txt` зафиксированы основные зависимости проекта, но не отдельные низкоуровневые пакеты CUDA: они устанавливаются автоматически при установке подходящей сборки PyTorch.
+
+### 1. Создать виртуальное окружение
+
+**Linux / macOS:**
 
 ```bash
-python -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install --upgrade pip
 ```
+
+**Windows (PowerShell):**
+
+```powershell
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+```
+
+### 2. Установить PyTorch под нужное устройство
+
+Для **NVIDIA GPU с совместимым драйвером**, в том числе использованной в исследовании RTX 3060 Laptop GPU, установка воспроизводимой сборки **CUDA 12.8**:
+
+```bash
+python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+```
+
+Для **CPU** вместо этого:
+
+```bash
+python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+### 3. Установить остальные зависимости и проверить CUDA
+
+```bash
+python -m pip install -r requirements.txt
+python -c "import torch; print('PyTorch:', torch.__version__); print('CUDA build:', torch.version.cuda); print('CUDA доступна:', torch.cuda.is_available()); print('Устройство:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
+```
+
+В режиме NVIDIA GPU ожидается `CUDA доступна: True`. Если выводится `False`, обучение может перейти на CPU; проверьте драйвер и сборку PyTorch. Для повторения приведённых в работе результатов использованы версии PyTorch 2.11.0, torchvision 0.26.0 и сборка CUDA 12.8.
+
+### 4. Подготовить данные и запустить эксперименты
 
 Скачать Stanford Dogs и распаковать изображения в `data/stanford-dogs/images/Images/`. Далее из корня проекта:
 
